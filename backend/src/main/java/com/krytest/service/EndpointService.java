@@ -5,6 +5,7 @@ import com.krytest.repository.EndpointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,9 @@ public class EndpointService {
     }
 
     public List<Endpoint> findAll() {
-        return endpointRepository.findAll();
+        List<Endpoint> endpoints = endpointRepository.findAll();
+        endpoints.sort(Comparator.comparing(Endpoint::getCreated));
+        return endpoints;
     }
 
     public Endpoint create(Endpoint endpoint) {

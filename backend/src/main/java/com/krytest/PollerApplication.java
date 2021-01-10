@@ -15,7 +15,7 @@ public class PollerApplication {
     @Autowired
     private PollService pollService;
 
-    @Scheduled(fixedRate = 2)
+    @Scheduled(fixedRate = 5)
     public void scheduleTaskWithFixedRate() {
         Poller poller = new Poller(pollService);
         poller.run();

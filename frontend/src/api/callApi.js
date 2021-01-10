@@ -1,7 +1,9 @@
+const httpCodeNoContent = 204;
+
 export function getEndpointsFromApi() {
     return fetch('http://localhost:8080/api/endpoints')
         .then(data => {
-            if (data.status === 204) {
+            if (data.status === httpCodeNoContent) {
                 return [];
             } else {
                 return data.json();
