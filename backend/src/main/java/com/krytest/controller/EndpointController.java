@@ -24,7 +24,7 @@ public class EndpointController {
     PollService pollService;
 
     @GetMapping("/endpoints")
-    public ResponseEntity<List<Endpoint>> getAllEndpoints(@RequestParam(required = false) String url) {
+    public ResponseEntity<List<Endpoint>> getEndpoints(@RequestParam(required = false) String url) {
         try {
             List<Endpoint> endpoints = new ArrayList<Endpoint>();
 

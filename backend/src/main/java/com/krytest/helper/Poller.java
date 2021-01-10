@@ -14,14 +14,10 @@ public class Poller implements Runnable {
         this.pollService = pollService;
     }
 
-    public void getData() throws IOException {
-        pollService.updateData();
-    }
-
     @Override
     public void run() {
         try {
-            getData();
+            pollService.updateData();
         } catch (IOException e) {
             e.printStackTrace();
         }

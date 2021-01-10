@@ -21,14 +21,14 @@ public class PollService {
 
     @Autowired
     private final EndpointRepository endpointRepository;
-    OkHttpClient client;
+    private final OkHttpClient client;
 
     public PollService(EndpointRepository endpointRepository) {
         this.endpointRepository = endpointRepository;
         this.client = new OkHttpClient();
     }
 
-    public int getStatus(String url) throws IOException {
+    private int getStatus(String url) {
         int statusCode = 0;
         Request request = new Request.Builder().url(url).build();
         try (Response response = client.newCall(request).execute()) {
@@ -43,14 +43,12 @@ public class PollService {
     public void updateData() throws IOException {
         List<Endpoint> endpoints = endpointRepository.findAll();
         for (Endpoint endpoint : endpoints) {
-            int code = getStatus(endpoint.getUrl());
-            endpoint.setActive(code == 200);
+            int status = getStatus(endpoint.getUrl());
+            endpoint.setActive(status == 200);
             endpoint.setUpdated(new Date());
             if (endpointRepository.existsById(endpoint.getId())) {
                 endpointRepository.save(endpoint);
             }
         }
     }
-
-
 }

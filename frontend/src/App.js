@@ -48,13 +48,11 @@ const App = () => {
 
     useInterval(() => {
         setCounter(counter + 1);
-        console.log(counter)
         getEndpointsFromApi()
             .then(endpoints => {
                 setEndpoints(endpoints)
-                console.log('endpoints', endpoints)
             })
-    }, 2000);
+    }, 3000);
 
     return (
         <div className="container">

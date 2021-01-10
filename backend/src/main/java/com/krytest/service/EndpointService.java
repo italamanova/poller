@@ -36,7 +36,6 @@ public class EndpointService {
 
     public Endpoint update(Long id, Endpoint endpoint) {
         Endpoint endpointEntity = endpointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Endpoint not found"));
-        ;
         endpointEntity.setUrl(endpoint.getUrl());
         endpointRepository.save(endpointEntity);
         return endpointEntity;
